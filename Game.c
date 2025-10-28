@@ -10,7 +10,7 @@ void    OpenStatus(t_Player *Player)
     printf("현재 체력 : %d\n", Player->MaxHp);
 }
 
-void    Game(t_Player *Player)
+void    Game(t_Game *g)
 {
     int Input = 0;
     while (1)
@@ -21,22 +21,22 @@ void    Game(t_Player *Player)
         {
             case DonGeon:
             {
-                InDonGeon(Player);
+                InDonGeon(&g->Player);
 				break;
             }
             case MyInfo:
             {
-                OpenStatus(Player);
+                OpenStatus(&g->Player);
                 break;
             }
             case Market:
             {
-                InMarket(Player);
+                InMarket(&g->Player);
 				break;
             }
             case SavePoint:
             {
-                Save(Player);
+                Save(g);
 				break;
             }
             default :

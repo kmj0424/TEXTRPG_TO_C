@@ -1,6 +1,6 @@
 #include "text.h"
 
-void    FetchSet(t_Player *Player)
+void    FetchSet(t_Game *g)
 {
 	FILE *fp = fopen("SaveFile.txt", "rb");
 	if (!fp) {
@@ -8,7 +8,7 @@ void    FetchSet(t_Player *Player)
 		return;
 	}
 
-	fread(Player, sizeof(t_Player), 1, fp);
+    fread(g, sizeof(t_Game), 1, fp);
 	fclose(fp);
-	Game(Player);
+	Game(g);
 }
