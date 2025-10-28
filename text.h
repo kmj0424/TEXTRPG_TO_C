@@ -53,6 +53,7 @@ typedef struct s_Player{
 	int 	MaxAtt;
 	int 	MinAtt;
 	int		Gold;
+	t_Inven Inv;
 }   t_Player;
 
 typedef struct s_Monster{
@@ -68,7 +69,6 @@ typedef struct s_Monster{
 typedef struct s_Game{
 	t_Player Player;
 	t_Monster Monster;
-	t_Inven Inv;
 } t_Game;
                                              
 void	NewSet(t_Game *g);
