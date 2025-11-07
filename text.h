@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "get_next_line.h"
-//#include <./mlx/mlx.h>
 
 enum Start{
 	New = 1,
@@ -28,16 +27,6 @@ enum InGame{
 	Back,
 };
 
-enum Market{
-	Purchase = 1,
-	Sale,
-};
-
-// enum	Item{
-// 	HpPotion,
-// 	ItemGold,
-// };
-
 typedef struct s_Inven{
 	int	HpPotion;
 	int	MpPotion;
@@ -50,9 +39,13 @@ typedef struct s_Player{
 	int		Exp;
 	int		Hp;
 	int		MaxHp;
+	int		Mp;
+	int		MaxMp;
 	int 	MaxAtt;
 	int 	MinAtt;
+	int		SkillAtt;
 	int		Gold;
+	int		PlayerState;
 	t_Inven Inv;
 }   t_Player;
 
@@ -70,15 +63,24 @@ typedef struct s_Game{
 	t_Player Player;
 	t_Monster Monster;
 } t_Game;
-                                             
+
 void	NewSet(t_Game *g);
 void    FetchSet(t_Game *g);
 void 	Save(t_Game *g);
 
 void    Game(t_Game *g);
 
-void    InDonGeon(t_Player *Player);
+void    InDonGeon(t_Game *g);
+int		RandNum(int i, int j);
+
+void	EasyDon(t_Game *g);
+void	NormalDon(t_Game *g);
+void    HardDon(t_Game *g);
+
+int		FightMon(t_Player *Player, t_Monster *Monster);
+
 void    InMarket(t_Player *Player);
+
 void    OpenStatus(t_Player *Player);
 void    OpenItem(t_Player *Player);
 

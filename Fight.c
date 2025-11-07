@@ -4,19 +4,27 @@ int	SkillChoice(t_Player *Player)
 {
 	int	Input;
 
-	printf("스킬선택 : skill_1(1), passive(2)");
+	printf("스킬선택 : skill_1(1), passive(2)\n");
 	scanf("%d", &Input);
 	switch(Input)
 	{
 		case 1:
+		{
+			if (Player->Mp < 50)
+			{
+				printf("마나 부족(auto_passive skill)\n");
+				return (RandNum(Player->MaxAtt, Player->MinAtt));
+			}
+			Player->Mp -= 50;
 			return (Player->SkillAtt = Player->MaxAtt * 1.2);
+		}
 		default :
 			break;
 	}
 	return (RandNum(Player->MaxAtt, Player->MinAtt));
 }
 
-int    FightMon(t_Player *Player, t_Monster *Monster)
+int	FightMon(t_Player *Player, t_Monster *Monster)
 {
 	int	m_att;
 	int p_att;
@@ -34,18 +42,22 @@ int    FightMon(t_Player *Player, t_Monster *Monster)
 	if (Monster->Hp <= 0)
 	{
 		Player->Exp += 80;
+		Player->Gold += 50;
 		if (Player->Exp >= 100 * Player->Lv)
 		{
 			Player->Exp -= 100 * Player->Lv;
 			Player->Lv += 1;
-			Player->MaxAtt *= 1.5;
-            Player->MinAtt *= 1.5;
-			Monster->MaxAtt *= 1.5;
-            Monster->MinAtt *= 1.5;
-			Player->Hp = Player->MaxHp * Player->Lv;
-            Player->MaxHp = Player->Hp;
+			Player->MaxAtt *= 1.2;
+            Player->MinAtt *= 1.2;
+			Player->MaxHp *= 1.2;
+			Player->MaxMp *= 1.2;
+			Monster->MaxAtt *= 1.2;
+            Monster->MinAtt *= 1.2;
+			Player->Hp = Player->MaxHp;
+            Player->Mp = Player->MaxMp;
 		}
-		Monster->Hp = Monster->MaxHp * Player->Lv;
-        Monster->MaxHp = Monster->Hp;
+        Monster->MaxHp *= 1.2;
+		Monster->Hp = Monster->MaxHp;
 	}
+	return 0;
 }

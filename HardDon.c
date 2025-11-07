@@ -25,15 +25,19 @@ void    HardDon(t_Game *g)
 		{
 			case 1:
 			{
-				FightMon();
+				if (FightMon(&g->Player, &g->Monster) != 0)
+				{
+					g->Player.PlayerState = 1;
+					return ;
+				}
 				break;
 			}
 			case 2:
 			{
-				OpenItem();
+				OpenItem(&g->Player);
 				break;
 			}
-			else
+			default:
 				return ;
 		}
 	}

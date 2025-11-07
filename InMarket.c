@@ -8,7 +8,7 @@ void	ActPurchase(t_Player *Player)
 	{
 		printf("(1)체력포션 : 100G, (2)마나포션 : 100G (3)나가기\n");
 		scanf("%d", &Input);
-		if (Player->Gold < 100)
+		if (Player->Gold < 100 && Input != 3)
 		{
 			printf("Gold 부족\n");
 			return ;
@@ -19,11 +19,13 @@ void	ActPurchase(t_Player *Player)
 			{
 				Player->Gold -= 100;
 				Player->Inv.HpPotion += 1;
+				break;
 			}
 			case 2:
 			{
 				Player->Gold -= 100;
 				Player->Inv.MpPotion += 1;
+				break;
 			}
 			default:
 				return ;

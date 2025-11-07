@@ -3,8 +3,8 @@
 static void	MonSet(t_Monster *Monster, t_Player *Player)
 {
     Monster->Job = "Easy";
-    Monster->Hp = Player->MaxHp / 2;
-    Monster->MaxHp = Monster->Hp;
+    Monster->MaxHp = Player->MaxHp / 2;
+    Monster->Hp = Monster->MaxHp;
     Monster->MaxAtt = Player->MaxAtt / 2;
     Monster->MinAtt = Player->MinAtt / 2;
     Monster->Gold = 50;
@@ -25,16 +25,20 @@ void    EasyDon(t_Game *g)
 		{
 			case 1:
 			{
-				FightMon();
+				if (FightMon(&g->Player, &g->Monster) != 0)
+				{
+					g->Player.PlayerState = 1;
+					return ;
+				}
 				break;
 			}
 			case 2:
 			{
-				OpenItem();
+				OpenItem(&g->Player);
 				break;
 			}
-			else
-				return ;
+			default:
+				return;
 		}
 	}
 }

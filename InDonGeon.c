@@ -15,17 +15,17 @@ void    InDonGeon(t_Game *g)
     {
         case 1:
         {
-            EasyDon(t_Game *g);
+            EasyDon(g);
             break;
         }
         case 2:
         {
-            NormalDon(t_Game *g);
+            NormalDon(g);
             break;
         }
         case 3:
         {
-            HardDon(t_Game *g);
+            HardDon(g);
             break;
         }
         default :
