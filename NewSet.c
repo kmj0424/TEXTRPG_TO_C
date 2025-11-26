@@ -9,20 +9,12 @@ void    Init(t_Player *Player)
 void	NewSet(t_Game *g)
 {
 	int	Input;
-	char Name[10000];
+	char Name[35];
 	Init(&g->Player);
 	printf("닉네임 생성 : \n");
-	while (1)
-	{
-		scanf("%s", Name);
-		if (strlen(Name) > 10)
-			printf("10자 미만으로 써주세요.\n");
-		else
-		{
-			strcpy(g->Player.Name, Name);
-			break;
-		}
-	}
+	scanf("%30s", Name);
+	strncpy(g->Player.Name, Name, sizeof(g->Player.Name) - 1);
+	g->Player.Name[sizeof(g->Player.Name) - 1] = '\0';
 	printf("직업 선택 : 전사(1), 마법사(2), 암살자(3)\n");
 	scanf("%d", &Input);
 	if (Input == Fighter)
