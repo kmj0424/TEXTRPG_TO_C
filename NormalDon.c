@@ -2,11 +2,11 @@
 
 static void	MonSet(t_Monster *Monster, t_Player *Player)
 {
-    Monster->Job = "Normal";
-    Monster->Hp = Player->MaxHp;
+    strcpy(Monster->Job, "Normal");
+    Monster->Hp = 100;
     Monster->MaxHp = Monster->Hp;
-    Monster->MaxAtt = Player->MaxAtt;
-    Monster->MinAtt = Player->MinAtt;
+    Monster->MaxAtt = 120;
+    Monster->MinAtt = 80;
     Monster->Gold = 75;
     // Monster->Item = RandNum(4, 1);
 }
