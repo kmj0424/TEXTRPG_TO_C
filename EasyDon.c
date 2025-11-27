@@ -1,21 +1,10 @@
 #include "text.h"
 
-static void	MonSet(t_Monster *Monster, t_Player *Player)
-{
-    strcpy(Monster->Job, "Easy");
-    Monster->MaxHp = 30;
-    Monster->Hp = Monster->MaxHp;
-    Monster->MaxAtt = 30;
-    Monster->MinAtt = 20;
-    Monster->Gold = 50;
-    // Monster->Item = RandNum(4, 1);
-}
-
 void    EasyDon(t_Game *g)
 {
 	int Input;
 
-	MonSet(&g->Monster, &g->Player);
+    strcpy(&g->Monster->Job, "Easy");
 	while (1)
 	{
 		OpenStatus(&g->Player);

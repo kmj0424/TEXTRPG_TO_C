@@ -24,6 +24,34 @@ int	SkillChoice(t_Player *Player)
 	return (RandNum(Player->MaxAtt, Player->MinAtt));
 }
 
+void	Monset(t_Monster *Monset, char *MonLv)
+{
+	if (strcmp == "Easy")
+	{
+		Monster->MaxHp = 30;
+		Monster->Hp = Monster->MaxHp;
+		Monster->MaxAtt = 30;
+		Monster->MinAtt = 20;
+		Monster->Gold = 50;	
+	}
+	if (strcmp == "Normal")
+	{
+		Monster->Hp = 100;
+		Monster->MaxHp = Monster->Hp;
+		Monster->MaxAtt = 120;
+		Monster->MinAtt = 80;
+		Monster->Gold = 75;
+	}
+	if (strcmp == "Hard")
+	{
+		Monster->Hp = 300;
+		Monster->MaxHp = Monster->Hp;
+		Monster->MaxAtt = 330;
+		Monster->MinAtt = 300;
+		Monster->Gold = 100;
+	}
+}
+
 int	FightMon(t_Player *Player, t_Monster *Monster)
 {
 	int	m_att;
@@ -41,6 +69,7 @@ int	FightMon(t_Player *Player, t_Monster *Monster)
 	printf("몬스터 : %d, 플레이어 : %d\n", Monster->Hp, Player->Hp);
 	if (Monster->Hp <= 0)
 	{
+		Monset(Monster, Monster->Job);
 		Player->Exp += 80;
 		Player->Gold += 50;
 		if (Player->Exp >= 100 * Player->Lv)
@@ -51,13 +80,9 @@ int	FightMon(t_Player *Player, t_Monster *Monster)
             Player->MinAtt *= 1.2;
 			Player->MaxHp *= 1.2;
 			Player->MaxMp *= 1.2;
-			Monster->MaxAtt *= 1.2;
-            Monster->MinAtt *= 1.2;
 			Player->Hp = Player->MaxHp;
             Player->Mp = Player->MaxMp;
 		}
-        Monster->MaxHp *= 1.2;
-		Monster->Hp = Monster->MaxHp;
 	}
 	return 0;
 }
