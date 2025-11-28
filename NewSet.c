@@ -11,8 +11,8 @@ void	NewSet(t_Game *g)
 	int	Input;
 	char Name[35];
 	Init(&g->Player);
-	printf("닉네임 생성 : \n");
-	scanf("%30s", Name);
+	printf("닉네임 생성(한국어 10자, 영어 30자) : \n");
+	scanf("%30s%*[^\n]%*c", Name);
 	strncpy(g->Player.Name, Name, sizeof(g->Player.Name) - 1);
 	g->Player.Name[sizeof(g->Player.Name) - 1] = '\0';
 	printf("직업 선택 : 전사(1), 마법사(2), 암살자(3)\n");
@@ -27,7 +27,7 @@ void	NewSet(t_Game *g)
 		g->Player.Mp = 100;
 		g->Player.MaxMp = 100;
 	}
-	if (Input == Mage)
+	else if (Input == Mage)
 	{
 		strcpy(g->Player.Job, "마법사");
 		g->Player.Hp = 90;
@@ -37,7 +37,7 @@ void	NewSet(t_Game *g)
 		g->Player.Mp = 100;
 		g->Player.MaxMp = 100;
 	}
-	if (Input == Assassin)
+	else if (Input == Assassin)
 	{
 		strcpy(g->Player.Job, "암살자");
 		g->Player.Hp = 80;

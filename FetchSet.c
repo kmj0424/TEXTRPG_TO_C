@@ -7,7 +7,6 @@ void    FetchSet(t_Game *g)
 		perror("파일 열기 실패");
 		return;
 	}
-
     fread(g, sizeof(t_Game), 1, fp);
 	fclose(fp);
 	Game(g);

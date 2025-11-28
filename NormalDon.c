@@ -4,7 +4,7 @@ void    NormalDon(t_Game *g)
 {
 	int Input;
 
-    strcpy(&g->Monster->Job, "Normal");
+	Monset(&g->Monster, "Normal");
 	while (1)
 	{
 		OpenStatus(&g->Player);

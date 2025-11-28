@@ -4,7 +4,7 @@ void    EasyDon(t_Game *g)
 {
 	int Input;
 
-    strcpy(&g->Monster->Job, "Easy");
+	Monset(&g->Monster, "Easy");
 	while (1)
 	{
 		OpenStatus(&g->Player);

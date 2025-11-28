@@ -4,7 +4,7 @@ int	SkillChoice(t_Player *Player)
 {
 	int	Input;
 
-	printf("스킬선택 : skill_1(1), passive(2)\n");
+	printf("스킬선택 : (1)skill_1, (2)passive\n");
 	scanf("%d", &Input);
 	switch(Input)
 	{
@@ -12,7 +12,7 @@ int	SkillChoice(t_Player *Player)
 		{
 			if (Player->Mp < 50)
 			{
-				printf("마나 부족(auto_passive skill)\n");
+				printf("마나 부족(auto passive skill)\n");
 				return (RandNum(Player->MaxAtt, Player->MinAtt));
 			}
 			Player->Mp -= 50;
@@ -24,28 +24,34 @@ int	SkillChoice(t_Player *Player)
 	return (RandNum(Player->MaxAtt, Player->MinAtt));
 }
 
-void	Monset(t_Monster *Monset, char *MonLv)
+void	Monset(t_Monster *Monster, char *MonLv)
 {
-	if (strcmp == "Easy")
+	if (strcmp(MonLv, "Easy") == 0)
 	{
+		strncpy(Monster->Job, "Easy", sizeof(Monster->Job));
+		Monster->Job[sizeof(Monster->Job)-1] = '\0';
 		Monster->MaxHp = 30;
 		Monster->Hp = Monster->MaxHp;
 		Monster->MaxAtt = 30;
 		Monster->MinAtt = 20;
 		Monster->Gold = 50;	
 	}
-	if (strcmp == "Normal")
+	else if (strcmp(MonLv, "Normal") == 0)
 	{
-		Monster->Hp = 100;
-		Monster->MaxHp = Monster->Hp;
+		strncpy(Monster->Job, "Normal", sizeof(Monster->Job));
+		Monster->Job[sizeof(Monster->Job)-1] = '\0';
+		Monster->MaxHp = 100;
+		Monster->Hp = Monster->MaxHp;
 		Monster->MaxAtt = 120;
 		Monster->MinAtt = 80;
 		Monster->Gold = 75;
 	}
-	if (strcmp == "Hard")
+	else if (strcmp(MonLv, "Hard") == 0)
 	{
-		Monster->Hp = 300;
-		Monster->MaxHp = Monster->Hp;
+		strncpy(Monster->Job, "Hard", sizeof(Monster->Job));
+		Monster->Job[sizeof(Monster->Job)-1] = '\0';
+		Monster->MaxHp = 300;
+		Monster->Hp = Monster->MaxHp;
 		Monster->MaxAtt = 330;
 		Monster->MinAtt = 300;
 		Monster->Gold = 100;

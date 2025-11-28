@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include "get_next_line.h"
+#include <locale.h>
 
 enum Start{
 	New = 1,
@@ -33,7 +33,7 @@ typedef struct s_Inven{
 } t_Inven;
 
 typedef struct s_Player{
-	char	Name[10];
+	char	Name[35];
 	char	Job[10];
 	int		Lv;
 	int		Exp;
@@ -50,7 +50,7 @@ typedef struct s_Player{
 }   t_Player;
 
 typedef struct s_Monster{
-	char	*Job;
+	char	Job[35];
 	int		Hp;
 	int		MaxHp;
 	int		MaxAtt;
@@ -73,6 +73,7 @@ void    Game(t_Game *g);
 void    InDonGeon(t_Game *g);
 int		RandNum(int i, int j);
 
+void	Monset(t_Monster *Monster, char *MonLv);
 void	EasyDon(t_Game *g);
 void	NormalDon(t_Game *g);
 void    HardDon(t_Game *g);

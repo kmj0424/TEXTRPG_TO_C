@@ -2,7 +2,13 @@
 
 int	RandNum(int i, int j)
 {
-	srand(time(NULL));
+	static int seeded = 0;
+
+	if (!seeded)
+	{
+		srand(time(NULL));
+		seeded = 1;
+	}
 	return ((rand() % (i - j + 1)) + j);
 }
 

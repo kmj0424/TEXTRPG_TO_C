@@ -7,6 +7,7 @@ int main()
 	int	Input;
 
 	memset(&g, 0, sizeof(t_Game));
+	setlocale(LC_ALL, "");
     printf("(1)새게임 (2)불러오기 (3)나가기\n");
 	scanf("%d", &Input);
 	if (Input == New)
@@ -18,6 +19,6 @@ int main()
 		FetchSet(&g);
 	}
 	if (Input == Exit)
-		;// free();
+		;
 	return 0;
 };

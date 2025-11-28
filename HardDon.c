@@ -4,7 +4,7 @@ void    HardDon(t_Game *g)
 {
 	int Input;
 
-    strcpy(&g->Monster->Job, "Hard");
+	Monset(&g->Monster, "Hard");
 	while (1)
 	{
 		OpenStatus(&g->Player);
