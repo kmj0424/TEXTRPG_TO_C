@@ -26,8 +26,15 @@ void    EasyDon(t_Game *g)
 				OpenItem(&g->Player);
 				break;
 			}
+			case 3:
+				return ;
 			default:
-				return;
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
 		}
 	}
 }

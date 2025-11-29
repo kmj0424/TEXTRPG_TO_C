@@ -48,8 +48,15 @@ void    Game(t_Game *g)
 				Save(g);
 				break;
 			}
-			default :
+			case Back:
 				return ;
+			default :
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
 		}
 	}
 }

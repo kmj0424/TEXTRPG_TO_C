@@ -21,6 +21,7 @@ void    OpenItem(t_Player *Player)
 					Player->Hp += 50;
 					if (Player->Hp >= Player->MaxHp)
 						Player->Hp = Player->MaxHp;
+					printf("현재 HP : %d", Player->Hp);
 				}
 				break;
 			}
@@ -34,11 +35,19 @@ void    OpenItem(t_Player *Player)
 					Player->Mp += 50;
 					if (Player->Mp >= Player->MaxMp)
 						Player->Mp = Player->MaxMp;
+					printf("현재 MP : %d", Player->Mp);
 				}
 				break;
 			}
-			default:
+			case 3:
 				return ;
+			default:
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
 		}
 	}
 }

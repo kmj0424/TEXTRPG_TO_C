@@ -18,8 +18,12 @@ int	SkillChoice(t_Player *Player)
 			Player->Mp -= 50;
 			return (Player->SkillAtt = Player->MaxAtt * 1.2);
 		}
-		default :
+		default:
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
 			break;
+		}
 	}
 	return (RandNum(Player->MaxAtt, Player->MinAtt));
 }

@@ -26,8 +26,15 @@ void    HardDon(t_Game *g)
 				OpenItem(&g->Player);
 				break;
 			}
-			default:
+			case 3:
 				return ;
+			default:
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ int main()
 {
 	t_Game g;
 
-	int	Input;
+	int	Input = 0;
 
 	memset(&g, 0, sizeof(t_Game));
 	setlocale(LC_ALL, "");
@@ -13,12 +13,14 @@ int main()
 	if (Input == New)
 	{
 		NewSet(&g);
+		printf("새 정보를 저장합니다.\n");
+		OpenStatus(&g.Player);
+		Save(&g);
+		Game(&g);
 	}
-	if (Input == Fetch)
-	{
+	else if (Input == Fetch)
 		FetchSet(&g);
-	}
-	if (Input == Exit)
+	else (Input == Exit)
 		;
 	return 0;
-};
+}

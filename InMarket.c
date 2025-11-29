@@ -27,8 +27,15 @@ void	ActPurchase(t_Player *Player)
 				Player->Inv.MpPotion += 1;
 				break;
 			}
-			default:
+			case 3:
 				return ;
+			default:
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
 		}
 	}
 }
@@ -47,6 +54,10 @@ void    InMarket(t_Player *Player)
 			break;
 		}
 		default:
-			break;
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			return ;
+		}
 	}
 }

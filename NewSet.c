@@ -10,45 +10,58 @@ void	NewSet(t_Game *g)
 {
 	int	Input;
 	char Name[35];
+
 	Init(&g->Player);
 	printf("닉네임 생성(한국어 10자, 영어 30자) : \n");
 	scanf("%30s%*[^\n]%*c", Name);
 	strncpy(g->Player.Name, Name, sizeof(g->Player.Name) - 1);
 	g->Player.Name[sizeof(g->Player.Name) - 1] = '\0';
-	printf("직업 선택 : 전사(1), 마법사(2), 암살자(3)\n");
-	scanf("%d", &Input);
-	if (Input == Fighter)
+	while (1)
 	{
-		strcpy(g->Player.Job, "전사");
-		g->Player.Hp = 100;
-		g->Player.MaxHp = 100;
-		g->Player.MaxAtt = 55;
-		g->Player.MinAtt = 45;
-		g->Player.Mp = 100;
-		g->Player.MaxMp = 100;
+		printf("직업 선택 : 전사(1), 마법사(2), 암살자(3)\n");
+		scanf("%d", &Input);
+		switch (Input)
+		{
+			case Fighter:
+			{
+				strcpy(g->Player.Job, "전사");
+				g->Player.Hp = 100;
+				g->Player.MaxHp = 100;
+				g->Player.MaxAtt = 55;
+				g->Player.MinAtt = 45;
+				g->Player.Mp = 100;
+				g->Player.MaxMp = 100;
+				return ;
+			}
+			case Mage:
+			{
+				strcpy(g->Player.Job, "마법사");
+				g->Player.Hp = 90;
+				g->Player.MaxHp = 90;
+				g->Player.MaxAtt = 50;
+				g->Player.MinAtt = 40;
+				g->Player.Mp = 100;
+				g->Player.MaxMp = 100;
+				return ;
+			}
+			case Assassin:
+			{
+				strcpy(g->Player.Job, "암살자");
+				g->Player.Hp = 80;
+				g->Player.MaxHp = 80;
+				g->Player.MaxAtt = 55;
+				g->Player.MinAtt = 45;
+				g->Player.Mp = 100;
+				g->Player.MaxMp = 100;
+				return ;
+			}
+			default:
+			{
+				int c;
+				while ((c = getchar()) != '\n' && c != EOF);
+				printf("다시 입력\n");
+				break;
+			}
+		}
 	}
-	else if (Input == Mage)
-	{
-		strcpy(g->Player.Job, "마법사");
-		g->Player.Hp = 90;
-		g->Player.MaxHp = 90;
-		g->Player.MaxAtt = 50;
-		g->Player.MinAtt = 40;
-		g->Player.Mp = 100;
-		g->Player.MaxMp = 100;
-	}
-	else if (Input == Assassin)
-	{
-		strcpy(g->Player.Job, "암살자");
-		g->Player.Hp = 80;
-		g->Player.MaxHp = 80;
-		g->Player.MaxAtt = 55;
-		g->Player.MinAtt = 45;
-		g->Player.Mp = 100;
-		g->Player.MaxMp = 100;
-	}
-	printf("새 정보를 저장합니다.\n");
-	OpenStatus(&g->Player);
-	Save(g);
-	Game(g);
 }
