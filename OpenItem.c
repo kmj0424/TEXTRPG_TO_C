@@ -1,20 +1,26 @@
-#include "text.h"
+﻿#include "text.h"
 
 void    OpenItem(t_Player *Player)
 {
-	int	Input;
+	int Input;
 
 	while (1)
 	{
-		printf("아이템 : 체력포션(%d개), 마나포션(%d개)\n", Player->Inv.HpPotion, Player->Inv.MpPotion);
-		printf("(1)체력포션사용 (2)마나포션사용 (3)나가기\n");
-		scanf("%d", &Input);
+		printf("아이템: 체력포션(%d개), 마나포션(%d개)\n", Player->Inv.HpPotion, Player->Inv.MpPotion);
+		printf("(1)체력포션 사용 (2)마나포션 사용 (3)나가기\n");
+		if (scanf("%d", &Input) != 1)
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("다시 입력\n");
+			continue;
+		}
 		switch(Input)
 		{
 			case 1:
 			{
 				if (Player->Inv.HpPotion <= 0)
-					printf("체력포션없음\n");
+					printf("체력포션 없음\n");
 				else
 				{
 					Player->Inv.HpPotion -= 1;
@@ -28,7 +34,7 @@ void    OpenItem(t_Player *Player)
 			case 2:
 			{
 				if (Player->Inv.MpPotion <= 0)
-					printf("마나포션없음\n");
+					printf("마나포션 없음\n");
 				else
 				{
 					Player->Inv.MpPotion -= 1;
@@ -43,8 +49,6 @@ void    OpenItem(t_Player *Player)
 				return ;
 			default:
 			{
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF);
 				printf("다시 입력\n");
 				break;
 			}

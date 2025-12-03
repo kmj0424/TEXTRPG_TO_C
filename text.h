@@ -20,7 +20,7 @@ enum Job{
 };
 
 enum InGame{
-	DonGeon = 1,
+	Dungeon = 1,
 	MyInfo,
 	Market,
 	SavePoint,
@@ -70,13 +70,13 @@ void 	Save(t_Game *g);
 
 void    Game(t_Game *g);
 
-void    InDonGeon(t_Game *g);
+void    InDungeon(t_Game *g);
 int		RandNum(int i, int j);
 
 void	Monset(t_Monster *Monster, char *MonLv);
-void	EasyDon(t_Game *g);
-void	NormalDon(t_Game *g);
-void    HardDon(t_Game *g);
+void	EasyDun(t_Game *g);
+void	NormalDun(t_Game *g);
+void    HardDun(t_Game *g);
 
 int		FightMon(t_Player *Player, t_Monster *Monster);
 

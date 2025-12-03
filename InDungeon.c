@@ -12,37 +12,41 @@ int	RandNum(int Max, int Min)
 	return ((rand() % (Max - Min + 1)) + Min);
 }
 
-void    InDonGeon(t_Game *g)
+void    InDungeon(t_Game *g)
 {
 	int Input = 0;
 
 	while (1)
 	{
 		printf("(1)Easy (2)Normal (3)Hard (4)Exit\n");
-		scanf("%d", &Input);
+		if (scanf("%d", &Input) != 1)
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("다시 입력\n");
+			continue;
+		}
 		switch(Input)
 		{
 			case 1:
 			{
-				EasyDon(g);
+				EasyDun(g);
 				break;
 			}
 			case 2:
 			{
-				NormalDon(g);
+				NormalDun(g);
 				break;
 			}
 			case 3:
 			{
-				HardDon(g);
+				HardDun(g);
 				break;
 			}
 			case 4:
 				return ;
 			default :
 			{
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF);
 				printf("다시 입력\n");
 				break;
 			}

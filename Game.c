@@ -1,4 +1,4 @@
-#include "text.h"
+﻿#include "text.h"
 
 void    OpenStatus(t_Player *Player)
 {
@@ -13,7 +13,7 @@ void    OpenStatus(t_Player *Player)
 
 void    Game(t_Game *g)
 {
-	int Input = 0;
+	int Input;
 	while (1)
 	{
 		if (g->Player.PlayerState == 1)
@@ -24,13 +24,19 @@ void    Game(t_Game *g)
 			g->Player.Exp = 0;
 			g->Player.PlayerState = 0;
 		}
-		printf("(1)던전 (2)내정보 (3)상점 (4)저장 (5)나가기\n");
-		scanf("%d", &Input);
+		printf("(1)던전 (2)내 정보 (3)상점 (4)저장 (5)종료\n");
+		if (scanf("%d", &Input) != 1)
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("다시 입력\n");
+			continue;
+		}
 		switch(Input)
 		{
-			case DonGeon:
+			case Dungeon:
 			{
-				InDonGeon(g);
+				InDungeon(g);
 				break;
 			}
 			case MyInfo:
@@ -52,8 +58,6 @@ void    Game(t_Game *g)
 				return ;
 			default :
 			{
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF);
 				printf("다시 입력\n");
 				break;
 			}

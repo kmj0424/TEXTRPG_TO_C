@@ -1,4 +1,4 @@
-#include "text.h"
+﻿#include "text.h"
 
 void    Init(t_Player *Player)
 {
@@ -6,20 +6,26 @@ void    Init(t_Player *Player)
 	Player->Lv = 1;
 }
 
-void	NewSet(t_Game *g)
+void    NewSet(t_Game *g)
 {
-	int	Input;
+	int Input;
 	char Name[35];
 
 	Init(&g->Player);
-	printf("닉네임 생성(한국어 10자, 영어 30자) : \n");
+	printf("캐릭터 이름 입력(최대 30자): \n");
 	scanf("%30s%*[^\n]%*c", Name);
 	strncpy(g->Player.Name, Name, sizeof(g->Player.Name) - 1);
 	g->Player.Name[sizeof(g->Player.Name) - 1] = '\0';
 	while (1)
 	{
-		printf("직업 선택 : 전사(1), 마법사(2), 암살자(3)\n");
-		scanf("%d", &Input);
+		printf("직업 선택 : (1)전사, (2)마법사, (3)암살자\n");
+		if (scanf("%d", &Input) != 1)
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("다시 입력\n");
+			continue;
+		}
 		switch (Input)
 		{
 			case Fighter:
@@ -57,8 +63,6 @@ void	NewSet(t_Game *g)
 			}
 			default:
 			{
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF);
 				printf("다시 입력\n");
 				break;
 			}

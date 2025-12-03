@@ -1,13 +1,19 @@
-#include "text.h"
+﻿#include "text.h"
 
-void	ActPurchase(t_Player *Player)
+void    ActPurchase(t_Player *Player)
 {
-	int	Input;
+	int Input;
 
 	while (1)
 	{
 		printf("(1)체력포션 : 100G, (2)마나포션 : 100G (3)나가기\n");
-		scanf("%d", &Input);
+		if (scanf("%d", &Input) != 1)
+		{
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("다시 입력\n");
+			continue;
+		}
 		if (Player->Gold < 100 && Input != 3)
 		{
 			printf("Gold 부족\n");
@@ -31,8 +37,6 @@ void	ActPurchase(t_Player *Player)
 				return ;
 			default:
 			{
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF);
 				printf("다시 입력\n");
 				break;
 			}
@@ -45,7 +49,13 @@ void    InMarket(t_Player *Player)
 	int Input;
 
 	printf("(1)구매 (2)나가기\n");
-	scanf("%d", &Input);
+	if (scanf("%d", &Input) != 1)
+	{
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF);
+		printf("다시 입력\n");
+		return ;
+	}
 	switch (Input)
 	{
 		case 1:

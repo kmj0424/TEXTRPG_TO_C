@@ -1,11 +1,17 @@
-#include "text.h"
+﻿#include "text.h"
 
-int	SkillChoice(t_Player *Player)
+int SkillChoice(t_Player *Player)
 {
-	int	Input;
+	int Input;
 
-	printf("스킬선택 : (1)skill_1, (2)passive\n");
-	scanf("%d", &Input);
+	printf("스킬 선택 : (1)skill_1, (2)passive\n");
+	if (scanf("%d", &Input) != 1)
+	{
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF);
+		printf("다시 입력\n");
+		return (RandNum(Player->MaxAtt, Player->MinAtt));
+	}
 	switch(Input)
 	{
 		case 1:
@@ -28,7 +34,7 @@ int	SkillChoice(t_Player *Player)
 	return (RandNum(Player->MaxAtt, Player->MinAtt));
 }
 
-void	Monset(t_Monster *Monster, char *MonLv)
+void    Monset(t_Monster *Monster, char *MonLv)
 {
 	if (strcmp(MonLv, "Easy") == 0)
 	{
@@ -38,7 +44,7 @@ void	Monset(t_Monster *Monster, char *MonLv)
 		Monster->Hp = Monster->MaxHp;
 		Monster->MaxAtt = 30;
 		Monster->MinAtt = 20;
-		Monster->Gold = 50;	
+		Monster->Gold = 50; 
 	}
 	else if (strcmp(MonLv, "Normal") == 0)
 	{
@@ -62,36 +68,36 @@ void	Monset(t_Monster *Monster, char *MonLv)
 	}
 }
 
-int	FightMon(t_Player *Player, t_Monster *Monster)
+int FightMon(t_Player *Player, t_Monster *Monster)
 {
-	int	m_att;
+	int m_att;
 	int p_att;
 
-	printf("몬스터 : %d, 플레이어 : %d\n", Monster->Hp, Player->Hp);
+	printf("몬스터 HP: %d, 플레이어 HP: %d\n", Monster->Hp, Player->Hp);
 	m_att = RandNum(Monster->MaxAtt, Monster->MinAtt);
 	p_att = SkillChoice(Player);
-	printf("몬스터에게 %d의 피해를 받음\n", m_att);
+	printf("몬스터에게 %d 피해를 받음\n", m_att);
 	Player->Hp -= m_att;
 	if (Player->Hp <= 0)
 		return 1;
-	printf("몬스터에게 %d의 피해를 입힘\n", p_att);
+	printf("몬스터에게 %d 피해를 입힘\n", p_att);
 	Monster->Hp -= p_att;
-	printf("몬스터 : %d, 플레이어 : %d\n", Monster->Hp, Player->Hp);
+	printf("몬스터 HP: %d, 플레이어 HP: %d\n", Monster->Hp, Player->Hp);
 	if (Monster->Hp <= 0)
 	{
 		Monset(Monster, Monster->Job);
 		Player->Exp += 80;
-		Player->Gold += 50;
+		Player->Gold += Monster->Gold;
 		if (Player->Exp >= 100 * Player->Lv)
 		{
 			Player->Exp -= 100 * Player->Lv;
 			Player->Lv += 1;
 			Player->MaxAtt *= 1.2;
-            Player->MinAtt *= 1.2;
+			Player->MinAtt *= 1.2;
 			Player->MaxHp *= 1.2;
 			Player->MaxMp *= 1.2;
 			Player->Hp = Player->MaxHp;
-            Player->Mp = Player->MaxMp;
+			Player->Mp = Player->MaxMp;
 		}
 	}
 	return 0;
