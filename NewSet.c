@@ -12,7 +12,7 @@ void    NewSet(t_Game *g)
 	char Name[35];
 
 	Init(&g->Player);
-	printf("캐릭터 이름 입력(최대 30자): \n");
+	printf("캐릭터 이름 입력(최대 영어 30자, 한국어 10자): \n");
 	scanf("%30s%*[^\n]%*c", Name);
 	strncpy(g->Player.Name, Name, sizeof(g->Player.Name) - 1);
 	g->Player.Name[sizeof(g->Player.Name) - 1] = '\0';
@@ -37,6 +37,7 @@ void    NewSet(t_Game *g)
 				g->Player.MinAtt = 45;
 				g->Player.Mp = 100;
 				g->Player.MaxMp = 100;
+				g->Player.SkillAtt = g->Player.MaxAtt * 1.2;
 				return ;
 			}
 			case Mage:
@@ -48,6 +49,7 @@ void    NewSet(t_Game *g)
 				g->Player.MinAtt = 40;
 				g->Player.Mp = 100;
 				g->Player.MaxMp = 100;
+				g->Player.SkillAtt = g->Player.MaxAtt * 1.2;
 				return ;
 			}
 			case Assassin:
@@ -59,6 +61,7 @@ void    NewSet(t_Game *g)
 				g->Player.MinAtt = 45;
 				g->Player.Mp = 100;
 				g->Player.MaxMp = 100;
+				g->Player.SkillAtt = g->Player.MaxAtt * 1.2;
 				return ;
 			}
 			default:

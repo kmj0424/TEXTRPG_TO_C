@@ -9,7 +9,7 @@ int SkillChoice(t_Player *Player)
 	{
 		int c;
 		while ((c = getchar()) != '\n' && c != EOF);
-		printf("다시 입력\n");
+		printf("자동 기본 공격\n");
 		return (RandNum(Player->MaxAtt, Player->MinAtt));
 	}
 	switch(Input)
@@ -22,7 +22,7 @@ int SkillChoice(t_Player *Player)
 				return (RandNum(Player->MaxAtt, Player->MinAtt));
 			}
 			Player->Mp -= 50;
-			return (Player->SkillAtt = Player->MaxAtt * 1.2);
+			return (Player->SkillAtt);
 		}
 		default:
 		{
@@ -98,6 +98,7 @@ int FightMon(t_Player *Player, t_Monster *Monster)
 			Player->MaxMp *= 1.2;
 			Player->Hp = Player->MaxHp;
 			Player->Mp = Player->MaxMp;
+			Player->SkillAtt = Player->MaxAtt * 1.2;
 		}
 	}
 	return 0;

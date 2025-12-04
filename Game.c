@@ -8,6 +8,9 @@ void    OpenStatus(t_Player *Player)
 	printf("경험치 : %d\n", Player->Exp);
 	printf("체력 : %d/%d\n", Player->Hp, Player->MaxHp);
 	printf("마나 : %d/%d\n", Player->Mp, Player->MaxMp);
+	printf("최대 공격력 : %d\n", Player->MaxAtt);
+	printf("최소 공격력 : %d\n", Player->MinAtt);
+	printf("스킬 공격력 : %d\n", Player->SkillAtt);
 	printf("골드 : %d\n", Player->Gold);
 }
 
