@@ -18,6 +18,14 @@ void    InDungeon(t_Game *g)
 
 	while (1)
 	{
+		if (g->Player.PlayerState == 1)
+		{
+			printf("플레이어 리스폰\n");
+			g->Player.Hp = g->Player.MaxHp / 2;
+			g->Player.Mp = g->Player.MaxMp / 2;
+			g->Player.Exp = 0;
+			g->Player.PlayerState = 0;
+		}
 		printf("(1)Easy (2)Normal (3)Hard (4)Exit\n");
 		if (scanf("%d", &Input) != 1)
 		{
